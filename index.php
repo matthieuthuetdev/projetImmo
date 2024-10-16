@@ -1,5 +1,3 @@
-
-
 <?php
 /* HEADER entete avec dépendances CSS 
   ================================================== */
@@ -98,9 +96,3 @@ include("acces_membre.php");
 /* Pied de page avec dépendances Javascript...
     ================================================== */
 include("footer.php");
-
-?>
-          
-   
-
-
