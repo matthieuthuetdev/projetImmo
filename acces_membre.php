@@ -21,6 +21,9 @@
 </style>
 
 <?php
+require_once "./models/Database.php";
+require_once "./models/Users.php";
+Database::getInstance();
 
 
 
