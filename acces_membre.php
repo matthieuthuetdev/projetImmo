@@ -24,8 +24,11 @@
 require_once "./models/Database.php";
 require_once "./models/Users.php";
 Database::getInstance();
-
-
+if (isset($_POST["identifiant"])) {
+  $user = new Users();
+  $succes = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
+  var_dump($succes);
+}
 
 
 
