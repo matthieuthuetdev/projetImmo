@@ -29,10 +29,10 @@ if (isset($_POST["identifiant"])) {
   $succes = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
   var_dump($succes);
 }
+?>
 
 
 
-echo '
    
    <div class="container">
   <div class="panel panel-primary">
@@ -53,6 +53,4 @@ echo '
                    </form>
 				   </div>
   </div>
-  <div>';
-
-?>
+  <div>
