@@ -1,5 +1,4 @@
 <?php
-session_start();
 class Users
 {
     private PDO $connection;
@@ -17,8 +16,6 @@ class Users
         if (count($result) == 1) {
             $succes = password_verify($_password, $result[0]["pass_utilisateur"]);
             if ($succes) {
-                $_SESSION["mail"] = $result[0]["mail_utilisateur"];
-                $_SESSION["id"] = $result[0]["id_utilisateur"];
                 return $result[0];
             } else {
                 return [];

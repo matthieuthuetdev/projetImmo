@@ -1,8 +1,8 @@
 <?php
-session_start()
 require "./vue/header.php";
 require "./vue/menu.php";
-require "./vue/slider.php";    ?> <h1>Liste des biens immobiliers</h1>
+require "./vue/slider.php";    ?>
+<h1>Liste des biens immobiliers</h1>
 <form action="index.php" method="GET" enctype="multipart/form-data">
     <fieldset>
         <legend>Rechercher un Bien immobilier</legend>
@@ -20,6 +20,14 @@ require "./vue/slider.php";    ?> <h1>Liste des biens immobiliers</h1>
 
 </table>
 <?php
-require "./vue/acces_membre.php"; 
-require "./vue/footer.php"; 
+if (!isset($_SESSION["name"])) {
+    require "./vue/acces_membre.php";
+}else{
+    echo "<a href='./vue/signout.php'class='btn btn-primary'>déconnexion</a>";
+}
+var_dump($_POST);
+if(isset($_POST["signout"])){
+    session_destroy();
+}
+require "./vue/footer.php";
 ?>
