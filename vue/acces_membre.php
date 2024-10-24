@@ -34,6 +34,7 @@ if (isset($_POST["identifiant"])) {
     $_SESSION["email"] = $result["mail_utilisateur"];
     $_SESSION["levelId"] = $result["id_niveau"];
   }
+  header("location: index.php");
   var_dump($result);
 
 }

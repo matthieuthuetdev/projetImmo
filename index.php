@@ -25,6 +25,7 @@ if (!isset($_SESSION["name"])) {
 }else{
     echo "<a href='./vue/signout.php'class='btn btn-primary'>déconnexion</a>";
 }
+var_dump($_SESSION);
 var_dump($_POST);
 if(isset($_POST["signout"])){
     session_destroy();

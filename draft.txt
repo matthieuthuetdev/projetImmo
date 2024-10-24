@@ -1,0 +1,3 @@
+SELECT user.nom, user.prenom, city.nom_ville
+FROM user
+INNER JOIN city ON user.city_id = city.id;
