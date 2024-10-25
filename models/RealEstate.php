@@ -10,8 +10,9 @@ class RealEstate
     }
     public function listeRealEstat(): array
     {
-        $pdoStatement = $this->connection->query("SELECT * FROM biens_immobiliers", PDO::FETCH_ASSOC);
-        $montab = $pdoStatement->fetchAll();
+        $request = "SELECT titre, nbr_pieces, surface, prix vante, description, ges, classe_eco, meuble, localisationn, nom_dep, ville, charges_annuelle, id_utilisateur_commercial";
+        $rq = $this->connection->prepare($request);
+        $montab = $rq->fetchAll();
         $this->result = $montab;
         return $montab;
     }
