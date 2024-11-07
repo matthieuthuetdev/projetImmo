@@ -7,7 +7,7 @@ $realEstat = new RealEstate();
 $result = $realEstat->listeRealEstat();
 var_dump($result[0]);
 ?>
-<h1>Bonjour <?php echo $_SESSION["firstname"] ?></h1>
+<h1>Bonjour <?php echo $_SESSION["firstname"] . " " . $_SESSION["name"] ?></h1>
 <h3>Vos bien immobilier</h3>
 
 
