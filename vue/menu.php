@@ -51,7 +51,7 @@
                     <li><a href="#">Terrains</a></li>
                   </ul>
                 </li>
-                <li><a href="#">Gestion des biens</a></li>
+                <li><a href="./member_page.php">Gestion des biens</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->

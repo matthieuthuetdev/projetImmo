@@ -4,7 +4,7 @@ class Database
     private static ?PDO $BDD = null;
     private function __construct() {}
     private static function getConfig(): array {
-        $config = (require "./model/config.php");
+        $config = (require "./models/config.php");
         return $config;
     }
     public static function getInstance(){
