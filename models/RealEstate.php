@@ -10,7 +10,7 @@ class RealEstate
     }
     public function listeRealEstat(): array
     {
-        $request = "SELECT titre, nbr_pieces, surface, prix vante, description, ges, classe_eco, meuble, localisationn, nom_dep, ville, charges_annuelle, id_utilisateur_commercial";
+        $request = "";
         $rq = $this->connection->prepare($request);
         $montab = $rq->fetchAll();
         $this->result = $montab;
