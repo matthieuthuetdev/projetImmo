@@ -4,7 +4,7 @@ require "./vue/menu.php";
 require "./vue/slider.php";
 require "./models/RealEstate.php";
 $realEstat = new RealEstate();
-$result = $realEstat->listeRealEstat();
+$result = $realEstat->listeRealEstat($_SESSION["id"]);
 var_dump($result);
 ?>
 <h1>Bonjour <?php echo $_SESSION["firstname"] . " " . $_SESSION["name"] ?></h1>
