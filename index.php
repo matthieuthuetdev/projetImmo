@@ -1,7 +1,30 @@
 <?php
+session_start();
+require "./models/Database.php";
+require "./models/Users.php";
+if (isset($_POST["identifiant"])) {
+    $user = new Users();
+    $result = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
+    if (!empty($result)) {
+        $_SESSION["userId"] = $result["id_utilisateur"];
+        $_SESSION["name"] = $result["nom_utilisateur"];
+        $_SESSION["firstname"] = $result["prenom_utilisateur"];
+        $_SESSION["email"] = $result["mail_utilisateur"];
+        $_SESSION["levelName"] = $result["libelle_niveau"];
+        header("location:member_page.php");
+        echo "connection réussi !";
+    } else {
+        header("location:index.php");
+        echo "connection échoué !";
+        require "./vue/footer.php";
+    }
+}
 require "./vue/header.php";
+
 require "./vue/menu.php";
-require "./vue/slider.php";    ?>
+require "./vue/slider.php";
+
+?>
 <h1>Liste des biens immobiliers</h1>
 <form action="index.php" method="GET" enctype="multipart/form-data">
     <fieldset>
@@ -22,13 +45,8 @@ require "./vue/slider.php";    ?>
 <?php
 if (!isset($_SESSION["name"])) {
     require "./vue/acces_membre.php";
-}else{
+} else {
     echo "<a href='./vue/signout.php'class='btn btn-primary'>déconnexion</a>";
 }
-var_dump($_SESSION);
-var_dump($_POST);
-if(isset($_POST["signout"])){
-    session_destroy();
-}
+
 require "./vue/footer.php";
-?>

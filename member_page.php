@@ -1,10 +1,17 @@
 <?php
+session_start();
 require "./vue/header.php";
 require "./vue/menu.php";
 require "./vue/slider.php";
 require "./models/RealEstate.php";
 $realEstat = new RealEstate();
-$result = $realEstat->listeRealEstat($_SESSION["id"]);
+if ($_SESSION["levelName"] == "superadmin") {
+    $id = null;
+} else {
+    $id = $_SESSION["userId"];
+    
+}
+$result = $realEstat->listeRealEstat($id);
 var_dump($result);
 ?>
 <h1>Bonjour <?php echo $_SESSION["firstname"] . " " . $_SESSION["name"] ?></h1>

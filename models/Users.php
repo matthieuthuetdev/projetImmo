@@ -8,7 +8,7 @@ class Users
     }
     public function signIn(string $_userName, string $_password): array
     {
-        $request = "SELECT * FROM utilisateurs WHERE mail_utilisateur= :username";
+        $request = "SELECT utilisateurs.id_utilisateur, utilisateurs.nom_utilisateur, utilisateurs.prenom_utilisateur, utilisateurs.mail_utilisateur, utilisateurs.pass_utilisateur, habilitations.libelle_niveau FROM utilisateurs INNER JOIN habilitations ON utilisateurs.id_niveau = habilitations.id_niveau WHERE mail_utilisateur= :username";
         $rq = $this->connection->prepare($request);
         $rq->bindParam(":username", $_userName, PDO::PARAM_STR);
         $rq->execute();
