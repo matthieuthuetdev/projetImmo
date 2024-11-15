@@ -15,6 +15,8 @@ SELECT
     id_utilisateur_commercial,
     categories.lib_categorie,
     proprietaires.nom
+    proprietaires.prenom
+    
 FROM
     biens_immobiliers
     INNER JOIN departements ON biens_immobiliers.num_departement = departements.id_dep
