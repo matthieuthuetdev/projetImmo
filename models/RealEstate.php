@@ -26,15 +26,33 @@ class RealEstate
     }
     public function displayHTMLTable()
     {
-        $HTMLTable = "<table classe='table'> <thead><th scope='col'>Titre</th><th scope='col'>Nombre de pièce</th><th scope='col'>Surface</th><th scope='col'>Prix de vente</th><th scope='col'>Description</th><th scope='col'>GES</th><th scope='col'>Classe éco</th><th scope='col'>Meuble</th><th scope='col'>Localisation</th><th scope='col'>Département</th><th scope='col'>Ville</th><th scope='col'>Charge annuelles</th><th>Catégorie</th><th>Nom du propriétaire</th><th>Prenom du propriétair</th><th scope='col'>Modifier</th><th scope='col'>Supprimer</th></thead><tbody>";
+        
+        $HTMLTable = "<table class='table'> <thead><th scope='col'>Titre</th><th scope='col'>Nombre de pièce</th><th scope='col'>Surface</th><th scope='col'>Prix de vente</th><th scope='col'>Description</th><th scope='col'>GES</th><th scope='col'>Classe éco</th><th scope='col'>Meuble</th><th scope='col'>Localisation</th><th scope='col'>Département</th><th scope='col'>Ville</th><th scope='col'>Charge annuelles</th><th>Catégorie</th><th>Nom du propriétaire</th><th>Prenom du propriétair</th><th scope='col'>Modifier</th><th scope='col'>Supprimer</th></thead><tbody>";
 
         for ($i = 0; $i < count($this->result); $i++) {
             $realEstatCourrant = $this->result[$i];
-            $nom = $realEstatCourrant["nom"];
+            $liste = [];
+            // $liste[] = $realEstatCourrant["titre"];
+            // $liste[] = $realEstatCourrant["nbr_pieces"];
+            // $liste[] = $realEstatCourrant["surface"];
+            // $liste[] = $realEstatCourrant["prix_vente"];
+            // $liste[] = $realEstatCourrant["description"];
+            // $liste[] = $realEstatCourrant["ges"];
+            // $liste[] = $realEstatCourrant["class_eco"];
+            // $liste[] = $realEstatCourrant["meuble"];
+            // $liste[] = $realEstatCourrant["localisation"];
+            // $liste[] = $realEstatCourrant["nom_dep"];
+            // $liste[] = $realEstatCourrant["ville"];
+            // $liste[] = $realEstatCourrant["charges_annuelles"];
+            // $liste[] = $realEstatCourrant["lib_categorie"];
+            // $liste[] = $realEstatCourrant["nom"];
+            // $liste[] = $realEstatCourrant["prenom"];
+            $HTMLTable .= "<tr>";
+            $HTMLTable .= "<td scope='row'>$liste[0]</th>";
+            $HTMLTable .= "</tr>";
 
-            $HTMLTable .= "<tr><td>$nom</td><td>$adresse</td><td>$prix</td><td>$commentaire</td><td>$note</td><td>$visite</td><td><form action='index.php?p=updaterealEstat' method='post'> <input type='hidden' name='realEstatId' id='realEstatId' value='$id'><input type='submit' name='goUpdate' value='Modifier'></form></td><td><a href='index.php?p=deleteRestaurant&id=$id'>Supprimer</a></td></tr>";
         }
-        $HTMLTable .= "</tbody></table";
+        $HTMLTable .= "</tbody></table>";
         return $HTMLTable;
     }
 }

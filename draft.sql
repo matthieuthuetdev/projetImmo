@@ -14,7 +14,7 @@ SELECT
     charges_annuelles,
     id_utilisateur_commercial,
     categories.lib_categorie,
-    proprietaires.nom
+    proprietaires.nom,
     proprietaires.prenom
     
 FROM

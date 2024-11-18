@@ -16,7 +16,7 @@ var_dump($result);
 ?>
 <h1>Bonjour <?php echo $_SESSION["firstname"] . " " . $_SESSION["name"] ?></h1>
 <h3>Vos bien immobilier</h3>
-
+<?php echo $realEstat->displayHTMLTable(); ?>
 
 
 <?php
