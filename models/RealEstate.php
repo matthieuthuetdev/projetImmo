@@ -1,5 +1,4 @@
 <?php
-require "./models/Database.php";
 class RealEstate
 {
     private $connection;
@@ -32,23 +31,23 @@ class RealEstate
         for ($i = 0; $i < count($this->result); $i++) {
             $realEstatCourrant = $this->result[$i];
             $liste = [];
-            // $liste[] = $realEstatCourrant["titre"];
-            // $liste[] = $realEstatCourrant["nbr_pieces"];
-            // $liste[] = $realEstatCourrant["surface"];
-            // $liste[] = $realEstatCourrant["prix_vente"];
-            // $liste[] = $realEstatCourrant["description"];
-            // $liste[] = $realEstatCourrant["ges"];
-            // $liste[] = $realEstatCourrant["class_eco"];
-            // $liste[] = $realEstatCourrant["meuble"];
-            // $liste[] = $realEstatCourrant["localisation"];
-            // $liste[] = $realEstatCourrant["nom_dep"];
-            // $liste[] = $realEstatCourrant["ville"];
-            // $liste[] = $realEstatCourrant["charges_annuelles"];
-            // $liste[] = $realEstatCourrant["lib_categorie"];
-            // $liste[] = $realEstatCourrant["nom"];
-            // $liste[] = $realEstatCourrant["prenom"];
+            $liste[] = $realEstatCourrant["titre"];
+            $liste[] = $realEstatCourrant["nbr_pieces"];
+            $liste[] = $realEstatCourrant["surface"];
+            $liste[] = $realEstatCourrant["prix_vente"];
+            $liste[] = $realEstatCourrant["description"];
+            $liste[] = $realEstatCourrant["ges"];
+            $liste[] = $realEstatCourrant["classe_eco"];
+            $liste[] = $realEstatCourrant["meuble"];
+            $liste[] = $realEstatCourrant["localisation"];
+            $liste[] = $realEstatCourrant["nom_dep"];
+            $liste[] = $realEstatCourrant["ville"];
+            $liste[] = $realEstatCourrant["charges_annuelles"];
+            $liste[] = $realEstatCourrant["lib_categorie"];
+            $liste[] = $realEstatCourrant["nom"];
+            $liste[] = $realEstatCourrant["prenom"];
             $HTMLTable .= "<tr>";
-            $HTMLTable .= "<td scope='row'>$liste[0]</th>";
+            $HTMLTable .= "<td scope='row'>$liste[0]</th><td>$liste[1]</td><td>$liste[2]</td><td>$liste[3]</td><td>$liste[4]</td><td>$liste[5]</td><td>$liste[6]</td><td>$liste[7]</td><td>$liste[8]</td><td>$liste[9]</td><td>$liste[10]</td><td>$liste[11]</td><td>$liste[12]</td><td>$liste[13]</td><td>$liste[14]</td><td>$liste[15]</td><td>$liste[16]</td>";
             $HTMLTable .= "</tr>";
 
         }

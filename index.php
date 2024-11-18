@@ -1,7 +1,53 @@
 <?php
 session_start();
+
+require "./vue/header.php";
+
+require "./vue/menu.php";
+require "./vue/slider.php";
+
+?>
+
+
+
+<?php
 require "./models/Database.php";
 require "./models/Users.php";
+require "./controllers/estateController.php";
+require "./models/RealEstate.php";
+
+if ($_GET["pageController"] == "") {
+    // chercher le controller de la page d'accueil
+} elseif ($_GET["pageController"] == "listEstate") {
+    if (isset($_GET["action"]) && $_GET["action"] == "display") {
+        if (isset($_GET["id"]) &&  !empty($_GET["id"])) {
+
+            $controllerEstate = new EstateController($_GET["id"]);
+            $controllerEstate->displayRealEstate();
+        } elseif (isset($_GET["id"]) && empty($_GET["id"])) {
+            $controllerEstate = new EstateController();
+            $controllerEstate->displayRealEstate();
+        } else {
+            // chercher le controller de la page d'accueil
+
+        }
+    }
+    else {
+   // chercher le controller de la page d'accueil
+
+    }
+
+
+
+} else {   // chercher le controller de la page d'accueil
+
+}
+
+
+
+
+
+
 if (isset($_POST["identifiant"])) {
     $user = new Users();
     $result = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
@@ -11,38 +57,14 @@ if (isset($_POST["identifiant"])) {
         $_SESSION["firstname"] = $result["prenom_utilisateur"];
         $_SESSION["email"] = $result["mail_utilisateur"];
         $_SESSION["levelName"] = $result["libelle_niveau"];
-        header("location:member_page.php");
         echo "connection réussi !";
-    } else {
-        header("location:index.php");
-        echo "connection échoué !";
-        require "./vue/footer.php";
+        $controllerEstate = new EstateController($result["id_utilisateur"]);
+        $controllerEstate->displayRealEstate();
     }
 }
-require "./vue/header.php";
 
-require "./vue/menu.php";
-require "./vue/slider.php";
 
-?>
-<h1>Liste des biens immobiliers</h1>
-<form action="index.php" method="GET" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Rechercher un Bien immobilier</legend>
-        <div class="form-group"> <input type="hidden" name="lib_cat" value="" id="lib_cat" /> <label for="dept">Choisir le département</label>'; <select name="dep" id="dep" class="form-control" style=" max-width:300px">
-                <option value="">Choisissez votre département</option>
-            </select> </div>
-        <div class="form-group"> <label for="budget">Montant budget maximum</label> <span class="currencyinput">€ <input type="number" step="10000" id="bugdet" name="budget" placeholder="Budget Max" min="50000" max="900000000" /> </span> </div>
-        <div class="form-group"> <label for="nbpiece">Nombre de pièces souhaitées:</label>'; <select name="nbpieces" id="nbre" class="form-control" style=" max-width:300px">
-                <option value=" ">Choisissez le nombre de pièce</option>
-            </select> </div>
-        <div class="form-group form-button" id="btnsub"> <button type="submit" class="btn btn-primary" name="envoi">Submit</button> </div>
-    </fieldset>
-</form>
-<table class='table table-striped'>
 
-</table>
-<?php
 if (!isset($_SESSION["name"])) {
     require "./vue/acces_membre.php";
 } else {
