@@ -17,6 +17,7 @@ require "./models/Database.php";
 require "./models/Users.php";
 require "./controllers/estateController.php";
 require "./models/RealEstate.php";
+require "./controllers/signInController.php";
 
 
 
@@ -34,16 +35,33 @@ if (isset($_GET["pageController"])) {
 
             break;
         case "listEstate":
-            if (isset($_GET["action"]) && $_GET["action"] == "display") {
-                if (isset($_GET["id"]) &&  !empty($_GET["id"])) {
+            if ($_SESSION["name"]) {
+                if (isset($_GET["action"]) && $_GET["action"] == "display") {
+                    if (isset($_GET["id"]) &&  !empty($_GET["id"])) {
 
-                    $controllerEstate = new EstateController($_GET["id"]);
-                    $controllerEstate->displayRealEstate();
-                } elseif (isset($_GET["id"]) && empty($_GET["id"])) {
+                        $controllerEstate = new EstateController($_GET["id"]);
+                        $controllerEstate->displayRealEstate();
+                    } elseif (isset($_GET["id"]) && empty($_GET["id"])) {
+                    } else {
+                        $controllerEstate = new EstateController();
+                        $controllerEstate->displayRealEstate();
+                    }
                 } else {
-                    $controllerEstate = new EstateController();
-                    $controllerEstate->displayRealEstate();
+
+                    $objhome = new HomepageController();
+                    $objhome->displayHome();
                 }
+            } else {
+                $controllerSignIn = new SignInController();
+                $controllerSignIn->display();
+            }
+
+
+            break;
+        case "signIn";
+            if (isset($_GET["action"]) && $_GET["action"] == "display") {
+                $controllerSignIn = new SignInController();
+                $controllerSignIn->display();
             } else {
 
                 $objhome = new HomepageController();
@@ -51,6 +69,7 @@ if (isset($_GET["pageController"])) {
             }
 
             break;
+
 
         default:
             $objhome = new HomepageController();
@@ -90,20 +109,6 @@ if (isset($_GET["pageController"])) {
 
 
 
-// if (isset($_POST["identifiant"])) {
-//     $user = new Users();
-//     $result = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
-//     if (!empty($result)) {
-//         $_SESSION["userId"] = $result["id_utilisateur"];
-//         $_SESSION["name"] = $result["nom_utilisateur"];
-//         $_SESSION["firstname"] = $result["prenom_utilisateur"];
-//         $_SESSION["email"] = $result["mail_utilisateur"];
-//         $_SESSION["levelName"] = $result["libelle_niveau"];
-//         echo "connection réussi !";
-//         $controllerEstate = new EstateController($result["id_utilisateur"]);
-//         $controllerEstate->displayRealEstate();
-//     }
-// }
 
 
 

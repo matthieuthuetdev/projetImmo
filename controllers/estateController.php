@@ -6,14 +6,11 @@ class EstateController
     {
         $this->userId = $_userId;
     }
-    public function displayRealEstate():void
+    public function displayRealEstate(): void
     {
         $estate = new RealEstate();
         $data = $estate->listeRealEstat($this->userId);
 
-//        var_export($data);
-     require "./vue/listEstate.php";
-
-
+        require "./vue/listEstate.php";
     }
 }

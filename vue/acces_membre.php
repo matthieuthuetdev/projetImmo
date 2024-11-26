@@ -24,6 +24,20 @@
 require_once "./models/Database.php";
 require_once "./models/Users.php";
 Database::getInstance();
+if (isset($_POST["identifiant"])) {
+  $user = new Users();
+  $result = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
+  if (!empty($result)) {
+    $_SESSION["userId"] = $result["id_utilisateur"];
+    $_SESSION["name"] = $result["nom_utilisateur"];
+    $_SESSION["firstname"] = $result["prenom_utilisateur"];
+    $_SESSION["email"] = $result["mail_utilisateur"];
+    $_SESSION["levelName"] = $result["libelle_niveau"];
+    echo "connection réussi !";
+    $controllerEstate = new EstateController($result["id_utilisateur"]);
+    $controllerEstate->displayRealEstate();
+  }
+}
 
 ?>
 
