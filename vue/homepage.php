@@ -4,6 +4,9 @@
         <legend>Rechercher un Bien immobilier</legend>
         <div class="form-group"> <input type="hidden" name="lib_cat" value="" id="lib_cat" /> <label for="dept">Choisir le département</label>'; <select name="dep" id="dep" class="form-control" style=" max-width:300px">
                 <option value="">Choisissez votre département</option>
+                <?php for ($i=0; $i < count($data) ; $i++) { 
+                    echo "<option value='".$data[$i]["id_dep"]."'>".$data[$i]["nom_dep"]."</option>";
+                } ?>
             </select> </div>
         <div class="form-group"> <label for="budget">Montant budget maximum</label> <span class="currencyinput">€ <input type="number" step="10000" id="bugdet" name="budget" placeholder="Budget Max" min="50000" max="900000000" /> </span> </div>
         <div class="form-group"> <label for="nbpiece">Nombre de pièces souhaitées:</label>'; <select name="nbpieces" id="nbre" class="form-control" style=" max-width:300px">
