@@ -39,7 +39,7 @@ if (isset($_GET["pageController"])) {
                 if (isset($_GET["action"]) && $_GET["action"] == "display") {
                     if (isset($_SESSION["userId"]) &&  !empty($_SESSION["userId"])) {
 
-                        $controllerEstate = new EstateController($_GET["id"]);
+                        $controllerEstate = new EstateController($_SESSION["userId"]);
                         $controllerEstate->displayRealEstate();
                     } else {
 
