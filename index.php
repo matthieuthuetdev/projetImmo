@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 require "./vue/header.php";
 
@@ -17,7 +17,7 @@ require "./models/Database.php";
 require "./models/Users.php";
 require "./controllers/estateController.php";
 require "./models/RealEstate.php";
-require "./controllers/signInController.php";
+require "./controllers/UserController.php";
 
 
 
@@ -35,7 +35,7 @@ if (isset($_GET["pageController"])) {
 
             break;
         case "listEstate":
-            if ($_SESSION["name"]) {
+            if (isset($_SESSION["name"])) {
                 if (isset($_GET["action"]) && $_GET["action"] == "display") {
                     if (isset($_SESSION["userId"]) &&  !empty($_SESSION["userId"])) {
 
@@ -51,16 +51,21 @@ if (isset($_GET["pageController"])) {
                     $objhome->displayHome();
                 }
             } else {
-                $controllerSignIn = new SignInController();
-                $controllerSignIn->display();
+                $controllerUser = new UserController();
+                $controllerUser->signIn();
             }
 
 
             break;
-        case "signIn";
-            if (isset($_GET["action"]) && $_GET["action"] == "display") {
-                $controllerSignIn = new SignInController();
-                $controllerSignIn->display();
+        case "user";
+            if (isset($_GET["action"]) && $_GET["action"] == "signIn") {
+                $controllerUser = new UserController();
+                $controllerUser->signIn();
+            } elseif (isset($_GET["action"]) && $_GET["action"] == "signOut") {
+                $controllerUser = new UserController();
+                $controllerUser->signOut();
+                $objhome = new HomepageController();
+                $objhome->displayHome();
             } else {
 
                 $objhome = new HomepageController();

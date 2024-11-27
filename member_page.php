@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require "./vue/header.php";
 require "./vue/menu.php";
 require "./vue/slider.php";

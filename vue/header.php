@@ -1,4 +1,5 @@
 <?php 
+session_start();
 ?>
 <html lang="fr-fr">
   <head>
