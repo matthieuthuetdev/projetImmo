@@ -26,22 +26,6 @@
             $realEstatCourrant = $data[$i];
          
 
-            // $liste = [];
-            // $liste[] = $realEstatCourrant["titre"];
-            // $liste[] = $realEstatCourrant["nbr_pieces"];
-            // $liste[] = $realEstatCourrant["surface"];
-            // $liste[] = $realEstatCourrant["prix_vente"];
-            // $liste[] = $realEstatCourrant["description"];
-            // $liste[] = $realEstatCourrant["ges"];
-            // $liste[] = $realEstatCourrant["classe_eco"];
-            // $liste[] = $realEstatCourrant["meuble"];
-            // $liste[] = $realEstatCourrant["localisation"];
-            // $liste[] = $realEstatCourrant["nom_dep"];
-            // $liste[] = $realEstatCourrant["ville"];
-            // $liste[] = $realEstatCourrant["charges_annuelles"];
-            // $liste[] = $realEstatCourrant["lib_categorie"];
-            // $liste[] = $realEstatCourrant["nom"];
-            // $liste[] = $realEstatCourrant["prenom"];
 
             $HTMLTable .= "<tr>";
 

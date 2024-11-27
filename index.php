@@ -37,17 +37,16 @@ if (isset($_GET["pageController"])) {
         case "listEstate":
             if ($_SESSION["name"]) {
                 if (isset($_GET["action"]) && $_GET["action"] == "display") {
-                    if (isset($_GET["id"]) &&  !empty($_GET["id"])) {
+                    if (isset($_SESSION["userId"]) &&  !empty($_SESSION["userId"])) {
 
                         $controllerEstate = new EstateController($_GET["id"]);
                         $controllerEstate->displayRealEstate();
-                    } elseif (isset($_GET["id"]) && empty($_GET["id"])) {
                     } else {
-                        $controllerEstate = new EstateController();
+
+                        $controllerEstate = new EstateController(null);
                         $controllerEstate->displayRealEstate();
                     }
                 } else {
-
                     $objhome = new HomepageController();
                     $objhome->displayHome();
                 }
@@ -81,42 +80,5 @@ if (isset($_GET["pageController"])) {
     $objhome = new HomepageController();
     $objhome->displayHome();
 }
-// if ($_GET["pageController"] == "") {
-//     // chercher le controller de la page d'accueil
-// } elseif ($_GET["pageController"] == "listEstate") {
-//     if (isset($_GET["action"]) && $_GET["action"] == "display") {
-//         if (isset($_GET["id"]) &&  !empty($_GET["id"])) {
-
-//             $controllerEstate = new EstateController($_GET["id"]);
-//             $controllerEstate->displayRealEstate();
-//         } elseif (isset($_GET["id"]) && empty($_GET["id"])) {
-//             $controllerEstate = new EstateController();
-//             $controllerEstate->displayRealEstate();
-//         } else {
-//             // chercher le controller de la page d'accueil
-
-//         }
-//     } else {
-//         // chercher le controller de la page d'accueil
-
-//     }
-// } else {   // chercher le controller de la page d'accueil
-
-// }
-
-
-
-
-
-
-
-
-
-// if (!isset($_SESSION["name"])) {
-//     require "./vue/acces_membre.php";
-// } else {
-//     echo "<a href='./vue/signout.php'class='btn btn-primary'>déconnexion</a>";
-// }
-
-
 require "./vue/footer.php";
+var_export($_SESSION);
