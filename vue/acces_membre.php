@@ -33,9 +33,9 @@ if (isset($_POST["identifiant"])) {
     $_SESSION["firstname"] = $result["prenom_utilisateur"];
     $_SESSION["email"] = $result["mail_utilisateur"];
     $_SESSION["levelName"] = $result["libelle_niveau"];
-    echo "connection réussi !";
-    $controllerEstate = new EstateController($result["id_utilisateur"]);
-    $controllerEstate->displayRealEstate();
+    $connect = true;
+  }else {
+    $connect = false;
   }
 }
 
@@ -51,7 +51,7 @@ if (isset($_POST["identifiant"])) {
 
 
       <form id="verif" name="verif" action="" method="POST">
-
+<?php echo isset($connect) && !$connect ? '<div style="background-color: lightblue; padding-top: 1rem; padding-bottom: 1rem; border: solid red 1px">Erreure : identifiant ou mot de passe incorect. </div>' : "" ?>
         <p style="text-align:center;"><label style="font-family:Verdana, Geneva, sans-serif" for="identifiant"> email </label>
 
           <input class="form-control" id="identifiant" name="identifiant" value="" type="text">
