@@ -23,35 +23,10 @@ class RealEstate
         $this->result = $montab;
         return $montab;
     }
-    public function displayHTMLTable()
-    {
-        
-        $HTMLTable = "<table class='table'> <thead><th scope='col'>Titre</th><th scope='col'>Nombre de pièce</th><th scope='col'>Surface</th><th scope='col'>Prix de vente</th><th scope='col'>Description</th><th scope='col'>GES</th><th scope='col'>Classe éco</th><th scope='col'>Meuble</th><th scope='col'>Localisation</th><th scope='col'>Département</th><th scope='col'>Ville</th><th scope='col'>Charge annuelles</th><th>Catégorie</th><th>Nom du propriétaire</th><th>Prenom du propriétair</th><th scope='col'>Modifier</th><th scope='col'>Supprimer</th></thead><tbody>";
+    public function getNbRoom(){
+        $request = "SELECT DISTINCT  ;";
+        $rq = $this->connection->prepare($request);
+        $rq->bindParam(":id", $_id, PDO::PARAM_INT);
 
-        for ($i = 0; $i < count($this->result); $i++) {
-            $realEstatCourrant = $this->result[$i];
-            $liste = [];
-            $liste[] = $realEstatCourrant["titre"];
-            $liste[] = $realEstatCourrant["nbr_pieces"];
-            $liste[] = $realEstatCourrant["surface"];
-            $liste[] = $realEstatCourrant["prix_vente"];
-            $liste[] = $realEstatCourrant["description"];
-            $liste[] = $realEstatCourrant["ges"];
-            $liste[] = $realEstatCourrant["classe_eco"];
-            $liste[] = $realEstatCourrant["meuble"];
-            $liste[] = $realEstatCourrant["localisation"];
-            $liste[] = $realEstatCourrant["nom_dep"];
-            $liste[] = $realEstatCourrant["ville"];
-            $liste[] = $realEstatCourrant["charges_annuelles"];
-            $liste[] = $realEstatCourrant["lib_categorie"];
-            $liste[] = $realEstatCourrant["nom"];
-            $liste[] = $realEstatCourrant["prenom"];
-            $HTMLTable .= "<tr>";
-            $HTMLTable .= "<td scope='row'>$liste[0]</th><td>$liste[1]</td><td>$liste[2]</td><td>$liste[3]</td><td>$liste[4]</td><td>$liste[5]</td><td>$liste[6]</td><td>$liste[7]</td><td>$liste[8]</td><td>$liste[9]</td><td>$liste[10]</td><td>$liste[11]</td><td>$liste[12]</td><td>$liste[13]</td><td>$liste[14]</td><td>$liste[15]</td><td>$liste[16]</td>";
-            $HTMLTable .= "</tr>";
-
-        }
-        $HTMLTable .= "</tbody></table>";
-        return $HTMLTable;
     }
 }

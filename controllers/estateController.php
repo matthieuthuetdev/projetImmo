@@ -9,7 +9,7 @@ class EstateController
     public function displayRealEstate(): void
     {
         $estate = new RealEstate();
-        $data = $estate->listeRealEstat($this->userId);
+        $dep = $estate->listeRealEstat($this->userId);
 
         require "./vue/listEstate.php";
     }

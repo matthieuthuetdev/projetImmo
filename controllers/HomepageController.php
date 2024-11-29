@@ -6,7 +6,7 @@ class HomepageController
     public function displayHome(): void
     {
         $dep = new Departements();
-        $data = $dep->searchAll();
+        $dep = $dep->searchAll();
         require "./vue/homepage.php";
     }
 }
