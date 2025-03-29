@@ -1,34 +1,89 @@
 <?php
-require "./vue/header.php";
-require "./vue/menu.php";
-require "./vue/slider.php";    ?>
-<h1>Liste des biens immobiliers</h1>
-<form action="index.php" method="GET" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Rechercher un Bien immobilier</legend>
-        <div class="form-group"> <input type="hidden" name="lib_cat" value="" id="lib_cat" /> <label for="dept">Choisir le département</label>'; <select name="dep" id="dep" class="form-control" style=" max-width:300px">
-                <option value="">Choisissez votre département</option>
-            </select> </div>
-        <div class="form-group"> <label for="budget">Montant budget maximum</label> <span class="currencyinput">€ <input type="number" step="10000" id="bugdet" name="budget" placeholder="Budget Max" min="50000" max="900000000" /> </span> </div>
-        <div class="form-group"> <label for="nbpiece">Nombre de pièces souhaitées:</label>'; <select name="nbpieces" id="nbre" class="form-control" style=" max-width:300px">
-                <option value=" ">Choisissez le nombre de pièce</option>
-            </select> </div>
-        <div class="form-group form-button" id="btnsub"> <button type="submit" class="btn btn-primary" name="envoi">Submit</button> </div>
-    </fieldset>
-</form>
-<table class='table table-striped'>
 
-</table>
+
+require "./vue/header.php";
+
+require "./vue/menu.php";
+require "./vue/slider.php";
+require "./models/departements.php";
+require "./controllers/HomepageController.php";
+
+?>
+
+
+
 <?php
-if (!isset($_SESSION["name"])) {
-    require "./vue/acces_membre.php";
-}else{
-    echo "<a href='./vue/signout.php'class='btn btn-primary'>déconnexion</a>";
-}
-var_dump($_SESSION);
-var_dump($_POST);
-if(isset($_POST["signout"])){
-    session_destroy();
+require "./models/Database.php";
+require "./models/Users.php";
+require "./controllers/estateController.php";
+require "./models/RealEstate.php";
+require "./controllers/UserController.php";
+
+
+
+if (isset($_GET["pageController"])) {
+
+    switch ($_GET["pageController"]) {
+        case '':
+            $objhome = new HomepageController();
+            $objhome->displayHome();
+
+            break;
+        case "home":
+            $objhome = new HomepageController();
+            $objhome->displayHome();
+
+            break;
+        case "listEstate":
+            if (isset($_SESSION["name"])) {
+                if (isset($_GET["action"]) && $_GET["action"] == "display") {
+                    if (isset($_SESSION["userId"]) &&  !empty($_SESSION["userId"])) {
+
+                        $controllerEstate = new EstateController($_SESSION["userId"]);
+                        $controllerEstate->displayRealEstate();
+                    } else {
+
+                        $controllerEstate = new EstateController(null);
+                        $controllerEstate->displayRealEstate();
+                    }
+                } else {
+                    $objhome = new HomepageController();
+                    $objhome->displayHome();
+                }
+            } else {
+                $controllerUser = new UserController();
+                $controllerUser->signIn();
+            }
+
+
+            break;
+        case "user";
+            if (isset($_GET["action"]) && $_GET["action"] == "signIn") {
+                $controllerUser = new UserController();
+                $controllerUser->signIn();
+            } elseif (isset($_GET["action"]) && $_GET["action"] == "signOut") {
+                $controllerUser = new UserController();
+                $controllerUser->signOut();
+                $objhome = new HomepageController();
+                $objhome->displayHome();
+            } else {
+
+                $objhome = new HomepageController();
+                $objhome->displayHome();
+            }
+
+            break;
+
+
+        default:
+            $objhome = new HomepageController();
+            $objhome->displayHome();
+
+            break;
+    }
+} else {
+    $objhome = new HomepageController();
+    $objhome->displayHome();
 }
 require "./vue/footer.php";
-?>
+var_export($_SESSION);

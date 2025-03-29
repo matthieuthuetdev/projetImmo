@@ -27,17 +27,18 @@ Database::getInstance();
 if (isset($_POST["identifiant"])) {
   $user = new Users();
   $result = $user->signIn($_POST["identifiant"], $_POST["pwd"]);
-  if(!empty($result)){
+  if (!empty($result)) {
     $_SESSION["userId"] = $result["id_utilisateur"];
     $_SESSION["name"] = $result["nom_utilisateur"];
     $_SESSION["firstname"] = $result["prenom_utilisateur"];
     $_SESSION["email"] = $result["mail_utilisateur"];
-    $_SESSION["levelId"] = $result["id_niveau"];
+    $_SESSION["levelName"] = $result["libelle_niveau"];
+    $connect = true;
+  } else {
+    $connect = false;
   }
-  header("location: index.php");
-  var_dump($result);
-
 }
+
 ?>
 
 
@@ -50,7 +51,7 @@ if (isset($_POST["identifiant"])) {
 
 
       <form id="verif" name="verif" action="" method="POST">
-
+        <?php echo isset($connect) && !$connect ? '<div style="background-color: lightblue; padding-top: 1rem; padding-bottom: 1rem; border: solid red 1px">Erreure : identifiant ou mot de passe incorect. </div>' : "" ?>
         <p style="text-align:center;"><label style="font-family:Verdana, Geneva, sans-serif" for="identifiant"> email </label>
 
           <input class="form-control" id="identifiant" name="identifiant" value="" type="text">

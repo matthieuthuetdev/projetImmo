@@ -1,7 +1,7 @@
 <?php 
 session_start();
 ?>
-<html lang="en">
+<html lang="fr-fr">
   <head>
     <meta charset="utf-8">
     <title>Carousel Template  Bootstrap</title>

@@ -1,3 +1,1 @@
-SELECT user.nom, user.prenom, city.nom_ville
-FROM user
-INNER JOIN city ON user.city_id = city.id;
+$liste = array($realEstatCourrant["titre"],$realEstatCourrant["nbr_pieces"],$realEstatCourrant["surface"],$realEstatCourrant["prix_vente"],$realEstatCourrant["description"],$realEstatCourrant["ges"],$realEstatCourrant["class_eco"],$realEstatCourrant["meuble"],$realEstatCourrant["localisation"],$realEstatCourrant["nom_dep"],$realEstatCourrant["ville"],$realEstatCourrant["charges_annuelles"],$realEstatCourrant["lib_categorie"],$realEstatCourrant["nom"],$realEstatCourrant["prenom"])
